@@ -21,8 +21,8 @@ export default function ProfilePage() {
 
   return (
     <div className="">
-      <p>{data?.name}</p>
-      <p>{data?.username}</p>
+      <p>Имя: {data?.name}</p>
+      <p>Имя пользователя: {data?.username}</p>
       <Button onClick={handleLogout}>Выйти</Button>
     </div>
   );

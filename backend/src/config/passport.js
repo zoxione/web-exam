@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const bcrypt = require('bcrypt');
 const User = require('../models/User'); // Adjust the path as needed
 
 passport.use(
@@ -10,7 +11,9 @@ passport.use(
       },
     });
     if (user !== null) {
-      if (user.password === password) {
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (passwordMatch) {
         done(null, {
           id: user.id,
           username: user.username,

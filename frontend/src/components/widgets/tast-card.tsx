@@ -1,7 +1,9 @@
 import { Task } from '@/types/Task';
 import { Checkbox } from '../ui/checkbox';
 import { FormEvent } from 'react';
-import { useUpdateTaskMutation } from '@/store/services/tasks';
+import { useDeleteTaskMutation, useUpdateTaskMutation } from '@/store/services/tasks';
+import { Button } from '../ui/button';
+import { TrashIcon } from '@radix-ui/react-icons';
 
 interface TaskCardProps {
   task: Task;
@@ -9,13 +11,17 @@ interface TaskCardProps {
 
 const TaskCard = ({ task }: TaskCardProps) => {
   const [updateTask, { isLoading }] = useUpdateTaskMutation();
+  const [deleteTask] = useDeleteTaskMutation();
 
   const handleComplete = (e: FormEvent<HTMLButtonElement>) => {
     if (task.completed) {
       return;
     }
-
     updateTask({ ...task, completed: true });
+  };
+
+  const handleDelete = () => {
+    deleteTask(task.id);
   };
 
   return (
@@ -26,6 +32,9 @@ const TaskCard = ({ task }: TaskCardProps) => {
           <p className="text-sm text-muted-foreground">{task.userId}</p>
         </div>
         <Checkbox onClick={(e) => handleComplete(e)} checked={task.completed} disabled={task.completed} />
+        <Button onClick={handleDelete} variant="outline" size="icon">
+          <TrashIcon className="h-4 w-4" />
+        </Button>
       </div>
     </>
   );

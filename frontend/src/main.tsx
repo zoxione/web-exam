@@ -10,6 +10,7 @@ import TasksPage from './pages/tasks.tsx';
 import LoginPage from './pages/login.tsx';
 import { Toaster } from 'sonner';
 import ProfilePage from './pages/profile.tsx';
+import RegisterPage from './pages/register.tsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
     element: <RootPage />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: '/register',
+        element: <RegisterPage />,
+        errorElement: <ErrorPage />,
+      },
       {
         path: '/login',
         element: <LoginPage />,

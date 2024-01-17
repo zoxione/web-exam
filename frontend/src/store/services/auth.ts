@@ -24,7 +24,18 @@ export const authApi = createApi({
       query: () => `auth/logout`,
       providesTags: ['Auth'],
     }),
+    register: builder.query<User, { username: string; password: string; name: string }>({
+      query: (args) => {
+        return {
+          url: '/auth/register',
+          method: 'POST',
+          body: args,
+        };
+      },
+      providesTags: ['Auth'],
+    }),
   }),
 });
 
-export const { useWhoamiQuery, useLazyLoginQuery, useLazyWhoamiQuery, useLazyLogoutQuery } = authApi;
+export const { useWhoamiQuery, useLazyLoginQuery, useLazyWhoamiQuery, useLazyLogoutQuery, useLazyRegisterQuery } =
+  authApi;

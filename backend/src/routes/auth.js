@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const passport = require('passport');
 const dotenv = require('dotenv').config();
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 router.post(
   '/login',
@@ -60,6 +62,18 @@ router.get('/logout', (req, res) => {
       message: 'failure',
     });
   }
+});
+
+router.post('/register', async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  const user = new User({
+    name: req.body.name,
+    username: req.body.username,
+    password: hashedPassword,
+  });
+  await user.save();
+  res.send(user);
 });
 
 module.exports = router;
