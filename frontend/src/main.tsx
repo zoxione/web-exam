@@ -6,11 +6,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import ErrorPage from './pages/error.tsx';
 import RootPage from './pages/root.tsx';
-import TasksPage from './pages/tasks.tsx';
 import LoginPage from './pages/login.tsx';
 import { Toaster } from 'sonner';
 import ProfilePage from './pages/profile.tsx';
 import RegisterPage from './pages/register.tsx';
+import LibraryPage from './pages/library.tsx';
 
 const router = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
-        path: '/tasks',
-        element: <TasksPage />,
+        path: '/library',
+        element: <LibraryPage />,
         errorElement: <ErrorPage />,
       },
       {

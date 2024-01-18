@@ -3,6 +3,7 @@ const passport = require('passport');
 const dotenv = require('dotenv').config();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const Library = require('../models/Library');
 
 router.post(
   '/login',
@@ -73,6 +74,10 @@ router.post('/register', async (req, res) => {
     password: hashedPassword,
   });
   await user.save();
+  const userLibrary = new Library({
+    ownerId: user.id,
+  });
+  await userLibrary.save();
   res.send(user);
 });
 

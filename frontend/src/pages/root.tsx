@@ -11,7 +11,8 @@ export default function RootPage() {
     const checkAuth = async () => {
       const res = await whoami();
       if (res.status === 'fulfilled') {
-        // navigate('/tasks');
+        // todo:
+        // отправлять на ту страницу, на которой пользователь
       } else if (res.status === 'rejected') {
         navigate('/login');
       }

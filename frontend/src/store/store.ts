@@ -1,14 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { tasksApi } from './services/tasks';
+import { booksApi } from './services/books';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { authApi } from './services/auth';
+import { librariesApi } from './services/libraries';
 
 export const store = configureStore({
   reducer: {
-    [tasksApi.reducerPath]: tasksApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
+    [librariesApi.reducerPath]: librariesApi.reducer,
+    [booksApi.reducerPath]: booksApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tasksApi.middleware).concat(authApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(authApi.middleware).concat(librariesApi.middleware).concat(booksApi.middleware),
 });
 
 // export type RootState = ReturnType<typeof store.getState>;

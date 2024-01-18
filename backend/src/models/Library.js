@@ -1,25 +1,26 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Task = sequelize.define('Task', {
+const Library = sequelize.define('Library', {
   id: {
     type: DataTypes.SMALLINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  userId: {
+  ownerId: {
     type: DataTypes.SMALLINT,
     allowNull: false,
   },
-  completed: {
-    type: DataTypes.BOOLEAN,
+  countShelves: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-    defaultValue: false,
+    defaultValue: 0,
+  },
+  capacity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
   },
 });
 
-module.exports = Task;
+module.exports = Library;

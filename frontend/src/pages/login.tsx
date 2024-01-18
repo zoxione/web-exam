@@ -18,7 +18,7 @@ export default function LoginPage() {
     const res = await login({ username, password });
     if (res.isSuccess) {
       toast.success('Вы вошли!');
-      navigate('/tasks');
+      navigate('/library');
     } else {
       toast.error('Неправильное имя пользователя или пароль');
     }
@@ -51,7 +51,7 @@ export default function LoginPage() {
         <Button type="submit">Войти</Button>
       </form>
 
-      <p className="text-sm leading-none">
+      <p className="text-sm leading-none text-center">
         Нет аккаунта?{' '}
         <Link to="/register" className="text-primary">
           Регистрация

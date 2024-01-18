@@ -24,7 +24,7 @@ export default function RegisterPage() {
       const resLogin = await login({ username, password });
       if (resLogin.isSuccess) {
         toast.success('Вы вошли!');
-        navigate('/tasks');
+        navigate('/library');
       } else {
         toast.error('Неправильное имя пользователя или пароль');
       }
@@ -64,7 +64,7 @@ export default function RegisterPage() {
         <Button type="submit">Регистрация</Button>
       </form>
 
-      <p className="text-sm leading-none">
+      <p className="text-sm leading-none text-center">
         Уже зарегистрированы?{' '}
         <Link to="/login" className="text-primary">
           Авторизация

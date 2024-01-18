@@ -8,7 +8,8 @@ const dotenv = require('dotenv').config();
 const sequelize = require('./config/database');
 const passport = require('./config/passport');
 const authRoute = require('./routes/auth');
-const tasksRoute = require('./routes/tasks');
+const booksRoute = require('./routes/books');
+const librariesRoute = require('./routes/libraries');
 
 const app = express();
 const PORT = dotenv.parsed.PORT;
@@ -36,7 +37,8 @@ app.use(
 
 // Routes
 app.use('/auth', authRoute);
-app.use('/tasks', tasksRoute);
+app.use('/books', booksRoute);
+app.use('/libraries', librariesRoute);
 
 sequelize.sync({ alter: true });
 
